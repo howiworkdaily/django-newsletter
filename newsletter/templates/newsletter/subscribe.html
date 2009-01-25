@@ -1,0 +1,63 @@
+
+
+
+
+<html>
+
+<style>
+
+body
+{
+	font-family: Helvetica, Arial;
+	color: #2B332E;
+}
+
+.errorlist li
+{
+	
+    margin: 0;
+	color: red;
+}
+
+a
+{
+    text-decoration: none;	
+    color: #2B332E;
+}
+p.button
+{
+    font-size: 0.875em;
+    font-weight: bold;
+    float: left;
+    border: 1px solid #C0CCC4;
+    background-color: #ebf2ee;
+    padding: 0.25em 8px;
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: 0 1px #FFF;
+}
+
+</style>
+
+<body>
+
+<h1>Opt-In/Opt-Out</h1>
+	
+<form method="POST" action="">
+
+<p>
+<label>Email Address</label>
+{{ form.email }}
+{% if form.email.errors %}{{ form.email.errors }}{% endif %}
+</p>
+
+<p>
+<label>Subscribe</label>
+{{ form.subscribed }}
+</p>
+
+<p class="button"><a href="javascript:document.forms[0].submit()">Submit</a></p>
+</form>
+
+
+</body>
+</html>
