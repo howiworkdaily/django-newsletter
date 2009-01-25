@@ -3,7 +3,9 @@ Django-Newsletter
 
 This is a simple newsletter opt-in/opt-out reusable application for your Django powered web app.
 
-Many projects I develop need a basic "newsletter" section for their site. So instead of reinventing the wheel each time I've selected the features most share and created this reusable Django app. I also provided basic example app to get you started.
+Many projects I develop need basic "newsletter" opt-in/out functionality on their site with the ability to export subscriptions to CSV files for uploading to newsletter management solutions like Campaign Monitor.
+
+So instead of reinventing the wheel each time I've selected the features most share and created this reusable Django app. I also provided basic example app to get you started.
 
 This app follows several "best practices" for reusable apps by allowing for template overrides and extra_context 
 arguments and such.
