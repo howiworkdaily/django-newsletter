@@ -1,8 +1,8 @@
 from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from newsletter.models import Subscription
-from newsletter.exceptions import SubscriptionExistsException
+from django_newsletter.models import Subscription
+from django_newsletter.exceptions import SubscriptionExistsException
 
 class SubscriptionForm(forms.ModelForm):
     '''

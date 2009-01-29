@@ -28,8 +28,12 @@ class SubscriptionBase(models.Model):
         except cls.DoestNotExist, e:
             return False
          
-    def save(self):
+    
+    def __unicode__(self):
+        return u'%s' % (self.email)
         
+    def save(self):
+        self.updated_on = datetime.date.today()
         if not self.created_on:
             self.created_on = datetime.date.today()
         super(SubscriptionBase,self).save()
@@ -39,10 +43,6 @@ class Subscription(SubscriptionBase):
     Generic subscription
     
     '''
-    
-    def __unicode__(self):
-        return u'%s' % (self.email) 
         
     def save(self, *args, **kwargs):
-        self.updated_on = datetime.date.today()
         super(Subscription,self).save()

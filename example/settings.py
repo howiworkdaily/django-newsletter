@@ -88,7 +88,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'newsletter',
+    'django_newsletter',
 )
 
 

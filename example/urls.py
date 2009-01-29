@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    (r'^newsletter/', include('newsletter.urls')), 
+    (r'^newsletter/', include('django_newsletter.urls')), 
     (r'^admin/(.*)', admin.site.root),
     url (
         r'^$',

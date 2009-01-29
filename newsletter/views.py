@@ -4,17 +4,18 @@ from django.http import *
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from newsletter.models import Subscription
-from newsletter.forms import SubscriptionForm
-from newsletter.core import csv
+from django_newsletter.models import Subscription
+from django_newsletter.forms import SubscriptionForm
+from django_newsletter.core import csv
 
 import datetime
 import re
 
+from django.contrib.admin.views.decorators import staff_member_required
+
+@staff_member_required
 def generate_csv(request):
     objs = Subscription.objects.filter(subscribed=True)
-    
-    import pdb; pdb.set_trace()
     if len(objs) == 0:
         objs = [["no subscriptions"],]
     return csv.ExcelResponse(objs)
