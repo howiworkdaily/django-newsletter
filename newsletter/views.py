@@ -22,10 +22,11 @@ def generate_csv(request):
 
 def subscribe_detail(request, form_class=SubscriptionForm, 
         template_name='newsletter/subscribe.html',  
-        success_template='newsletter/success.html', extra_context={}):
+        success_template='newsletter/success.html', extra_context={}, obj_class=Subscription):
     
     if request.POST:   
         form = form_class(request.POST)
+        
         if form.is_valid():
             
             subscribed = form.cleaned_data["subscribed"]
@@ -37,10 +38,10 @@ def subscribe_detail(request, form_class=SubscriptionForm,
                 otherwise the form, as is, will throw an exception
                 if the unique email already exists.
                 """
-                subscription = Subscription.objects.get(email=email)
+                subscription = obj_class.objects.get(email=email)
                 subscription.subscribed = subscribed
                 subscription.save()
-            except Subscription.DoesNotExist:
+            except obj_class.DoesNotExist:
                 #contiue on processing
                 pass
             
