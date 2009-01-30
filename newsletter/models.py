@@ -43,6 +43,9 @@ class Subscription(SubscriptionBase):
     Generic subscription
     
     '''
+    
+    class Meta:
+        db_table = "django_newsletter_subscription"
         
     def save(self, *args, **kwargs):
         super(Subscription,self).save()
