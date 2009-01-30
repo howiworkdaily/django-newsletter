@@ -15,17 +15,19 @@ import re
 from django.contrib.admin.views.decorators import staff_member_required
 
 @staff_member_required
-def generate_csv(request, model_str="django_newsletter.subscription"):
+def generate_csv(request, model_str="django_newsletter.subscription", data=None):
     '''
     TODO:
     
     '''
-    model = get_model(*model_str.split('.')
-    objs = model._default_manager.filter(subscribed=True)
+
+    if not data:
+        model = get_model(*model_str.split('.'))
+        data = model._default_manager.filter(subscribed=True)
     
-    if len(objs) == 0:
-        objs = [["no subscriptions"],]
-    return csv.ExcelResponse(objs)
+    if len(data) == 0:
+        data = [["no subscriptions"],]
+    return csv.ExcelResponse(data)
 
 def subscribe_detail(request, form_class=SubscriptionForm, 
         template_name='newsletter/subscribe.html',  
