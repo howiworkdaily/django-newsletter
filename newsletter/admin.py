@@ -1,6 +1,6 @@
 from django.contrib import admin
-from django_newsletter.models import Subscription
-from django_newsletter.forms import SubscriptionForm
+from newsletter.models import Subscription
+from newsletter.forms import SubscriptionForm
 
 class SubscriptionAdmin(admin.ModelAdmin):
     

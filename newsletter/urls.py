@@ -5,7 +5,7 @@ from django.conf import settings
 
 admin.autodiscover()
 
-urlpatterns = patterns('django_newsletter.views',
+urlpatterns = patterns('newsletter.views',
 
     url (r'^admin/newsletter/subscription/download/csv/$', 
         view='generate_csv',
