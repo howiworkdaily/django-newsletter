@@ -45,7 +45,7 @@ class Subscription(SubscriptionBase):
     '''
     
     class Meta:
-        db_table = "django_newsletter_subscription"
+        db_table = "newsletter_subscription"
         
     def save(self, *args, **kwargs):
         super(Subscription,self).save()

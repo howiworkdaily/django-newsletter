@@ -22,8 +22,8 @@ Features
 Installation
 ============
 
-1. add 'django_newsletter' directory to your Python path.
-2. add 'django_newsletter' to your INSTALLED_APPS tuple found in your settings file.
+1. add 'newsletter' directory to your Python path.
+2. add 'newsletter' to your INSTALLED_APPS tuple found in your settings file.
 3. execute ./manage.py syncdb to created database tables
 4. Log into your admin and enjoy!
 5. To customize the templates add a "newsletter" directory to your project's templates dir.

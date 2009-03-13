@@ -5,9 +5,9 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.db.models import get_model
 
-from django_newsletter.models import Subscription
-from django_newsletter.forms import SubscriptionForm
-from django_newsletter.core import csv
+from newsletter.models import Subscription
+from newsletter.forms import SubscriptionForm
+from newsletter.core import csv
 
 import datetime
 import re
@@ -15,7 +15,7 @@ import re
 from django.contrib.admin.views.decorators import staff_member_required
 
 @staff_member_required
-def generate_csv(request, model_str="django_newsletter.subscription", data=None):
+def generate_csv(request, model_str="newsletter.subscription", data=None):
     '''
     TODO:
     
@@ -32,7 +32,7 @@ def generate_csv(request, model_str="django_newsletter.subscription", data=None)
 def subscribe_detail(request, form_class=SubscriptionForm, 
         template_name='newsletter/subscribe.html',  
         success_template='newsletter/success.html', extra_context={}, 
-        model_str="django_newsletter.subscription"):
+        model_str="newsletter.subscription"):
 
     if request.POST:   
         try:
