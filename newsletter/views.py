@@ -33,47 +33,25 @@ def subscribe_detail(request, form_class=SubscriptionForm,
         template_name='newsletter/subscribe.html',  
         success_template='newsletter/success.html', extra_context={}, 
         model_str="django_newsletter.subscription"):
-    
-    '''
-    TODO:
-    '''
-    
+
     if request.POST:   
-        form = form_class(request.POST)
-        
+        try:
+            model = get_model(*model_str.split('.')) 
+            instance = model._default_manager.get(email=request.POST['email'])
+        except model.DoesNotExist: 
+            instance = None
+        form = form_class(request.POST, instance = instance)
         if form.is_valid():
-            
             subscribed = form.cleaned_data["subscribed"]
-            email = form.cleaned_data["email"]
-            subscription = None
-            model = None
-            try:
-                """
-                if the user already exists we're just gonna update
-                otherwise the form, as is, will throw an exception
-                if the unique email already exists.
-                """
-                
-                model = get_model(*model_str.split('.')) 
-                model._default_manager.get(email=email)    
-                subscription.subscribed = subscribed
-                subscription.save()
-            except (AttributeError, model.DoesNotExist):
-                #contiue on processing
-                pass
             
-            message = getattr(settings,
-                "NEWSLETTER_OPTIN_MESSAGE", "Success! You've been added.")
-            
-            #if opt-out
-            if not subscribed:
+            form.save()
+            if subscribed:
+                message = getattr(settings,
+                    "NEWSLETTER_OPTIN_MESSAGE", "Success! You've been added.")
+            else:
                 message = getattr(settings,
                      "NEWSLETTER_OPTOUT_MESSAGE", 
                      "You've been removed. Sorry to see ya go.")          
-            
-            #ok so this is a new signup, save()
-            if not subscription:
-                form.save()
 
             extra = {
                 'success': True,
