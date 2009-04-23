@@ -32,20 +32,17 @@ class SubscriptionBase(models.Model):
     def __unicode__(self):
         return u'%s' % (self.email)
         
-    def save(self):
+    def save(self, *args, **kwargs):
         self.updated_on = datetime.date.today()
         if not self.created_on:
             self.created_on = datetime.date.today()
-        super(SubscriptionBase,self).save()
+        super(SubscriptionBase,self).save(*args, **kwargs)
 
 class Subscription(SubscriptionBase):
     '''
     Generic subscription
     
     '''
-    
-    class Meta:
-        db_table = "newsletter_subscription"
         
     def save(self, *args, **kwargs):
         super(Subscription,self).save()
